@@ -1,48 +1,39 @@
 name: test-check
 
 on:
-  push:
-    branches:
-      - source
+    push:
+        branches:
+            - source
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
+        permissions:
+            contents: write
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+        steps:
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
+            - uses: actions/checkout@v4
+            - run: make install
+            - run: npx playwright install
+            - run: npx playwright install chromium
+            - run: make lint
+            - run: make test
 
-      - name: Install Dependencies
-        run: make install
+            - name: setup git config
+              run: |
+                  git config user.name "Bot"
+                  git config user.email "<>"
 
-      - name: Install Playwright Chromium
-        run: npx playwright install chromium
-
-      - name: Lint Code
-        run: make lint
-
-      - name: Run Tests
-        run: make test
-
-      - name: Setup Git Config
-        run: |
-          git config user.name "Bot"
-          git config user.email "bot@example.com"
-
-      - name: Prepare Template
-        run: |
-          git checkout --orphan main
-          echo '' > src/CafesTable.jsx
-          echo '' > src/FilterCafes.jsx
-          git add -A
-          git commit --no-verify -m "Rebuild template (auto)"
-          git push -f --no-verify --set-upstream origin main
+            - name: Prepare template
+              run: |
+                  git checkout --orphan main source
+                  echo '' > src/CafesTable.jsx
+                  echo '' > src/FilterCafes.jsx
+                  git add -A
+                  git commit --no-verify -m "Rebuild template (auto)"
+                  git push -f --no-verify --set-upstream origin main
