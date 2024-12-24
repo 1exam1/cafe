@@ -1,0 +1,38 @@
+name: test-check
+
+on:
+    push:
+        branches:
+            - source
+
+jobs:
+    build:
+        runs-on: self-hosted
+
+        permissions:
+            contents: write
+
+        steps:
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+
+            - uses: actions/checkout@v4
+            - run: make install
+            - run: npx playwright install chromium
+            - run: make lint
+            - run: make test
+
+            - name: setup git config
+              run: |
+                  git config user.name "Bot"
+                  git config user.email "<>"
+
+            - name: Prepare template
+              run: |
+                  git checkout --orphan main source
+                  echo '' > src/CafesTable.jsx
+                  echo '' > src/FilterCafes.jsx
+                  git add -A
+                  git commit --no-verify -m "Rebuild template (auto)"
+                  git push -f --no-verify --set-upstream origin main

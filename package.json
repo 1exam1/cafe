@@ -1,0 +1,58 @@
+{
+  "name": "l9-element-layout-v1",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test",
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "vite": "vite",
+    "server": "vite --config vite.config.js"
+  },
+  "simple-git-hooks": {
+    "pre-push": "npx eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.13.0",
+    "@jest/globals": "*",
+    "@playwright/test": "^1.48.1",
+    "@testing-library/dom": "*",
+    "@testing-library/jest-dom": "*",
+    "@testing-library/react": "*",
+    "@vitejs/plugin-react": "^4.3.3",
+    "axios": "^1.7.7",
+    "fastify": "^5.0.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "lodash": "*",
+    "nock": "^13.5.6",
+    "react": "*",
+    "react-dom": "*",
+    "react-test-renderer": "*",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "esbuild": "^0.24.0",
+    "esbuild-jest": "^0.5.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "globals": "^15.9.0",
+    "vite": "^5.4.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {
+      "\\.[jt]sx?$": "esbuild-jest"
+    }
+  }
+}

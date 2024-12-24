@@ -1,0 +1,72 @@
+:root {
+	--select-border: #777;
+	--select-focus: blue;
+	--select-arrow: var(--select-border);
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 1200px;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.cafesTable {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.controls {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	padding: 20px 0;
+}
+
+.cardsList {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.card {
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.card img {
+	width: 100%;
+	height: 300px;
+	object-fit: cover;
+	transition: all 0.5s;
+}
+.card img:hover {
+	transform: scale(1.02);
+}
+select {
+	width: 100%;
+	min-width: 15ch;
+	max-width: 30ch;
+	border: 1px solid var(--select-border);
+	border-radius: 0.25em;
+	padding: 0.25em 0.5em;
+	font-size: 1.25rem;
+	cursor: pointer;
+	line-height: 1.1;
+	background-color: #fff;
+	background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
