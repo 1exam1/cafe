@@ -6,7 +6,7 @@ const server = () => {
   const app = fastify();
 
   app.get('/cafes', (_req, reply) => {
-    reply.header('Access-Control-Allow-Origin', '*')
+    reply.header('Access-Control-Allow-Origin', '*');
 
     reply.header('Content-Type', 'application/json; charset=utf-8').send(JSON.stringify(response));
   });
